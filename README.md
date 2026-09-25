@@ -1,202 +1,176 @@
-\# Real-Time Object Detection with YOLO and OpenCV
+# Real-Time Object Detection with YOLO and OpenCV
 
+A real-time computer vision application that uses YOLO11, OpenCV, and PyTorch to detect, classify, and count objects from a webcam feed. The application uses CUDA GPU acceleration when an NVIDIA GPU is available.
 
+## Features
 
-A real-time computer vision application that uses YOLO and OpenCV to detect and count objects from a webcam feed.
+- Real-time object detection
+- Bounding box visualization
+- Object class identification
+- Confidence score display
+- Class-wise object counting
+- Total object counting
+- FPS monitoring
+- CUDA GPU acceleration
+- Webcam-based processing
 
+## Tech Stack
 
+- Python
+- OpenCV
+- Ultralytics YOLO11
+- PyTorch
+- CUDA
 
-\## Features
+## How It Works
 
-\* Real-time object detection
+The application captures frames from the webcam using OpenCV and passes them to a pretrained YOLO11 object detection model.
 
-\* Bounding box visualization
+YOLO processes each frame and returns the detected object's class, confidence score, and bounding box coordinates.
 
-\* Object class identification
+OpenCV then visualizes the detections and displays the object counts, FPS, and processing device.
 
-\* Confidence score display
+### Processing Pipeline
 
-\* Real-time object counting
+    Webcam
+       |
+       v
+    OpenCV Video Capture
+       |
+       v
+    YOLO11 Object Detection
+       |
+       v
+    Detection Results
+       |
+       +-- Object Class
+       +-- Confidence Score
+       +-- Bounding Box
+       |
+       v
+    Object Counting
+       |
+       v
+    FPS Calculation
+       |
+       v
+    OpenCV Visualization
 
-\* FPS monitoring
+## GPU Acceleration
 
-\* Webcam-based processing
+The application automatically checks whether CUDA is available.
 
+If an NVIDIA GPU with CUDA support is available, YOLO performs inference on the GPU. Otherwise, the application falls back to the CPU.
 
+Example:
 
-\## Tech Stack
+    Using device: cuda:0
+    GPU: NVIDIA GeForce GTX 1650
 
-\* Python
+## Installation
 
-\* OpenCV
+### 1. Clone the repository
 
-\* Ultralytics YOLO
+    git clone https://github.com/theamitabhgarg/Real-Time-Object-Detection-with-YOLO.git
 
+### 2. Navigate to the project
 
+    cd Real-Time-Object-Detection-with-YOLO
 
-\## How It Works
+### 3. Create a virtual environment
 
-The application captures frames from the webcam and passes them to a pretrained YOLO object detection model. YOLO identifies objects in each frame and returns:
+    python -m venv venv
 
-\* Object class
+### 4. Activate the virtual environment
 
-\* Confidence score
+Windows PowerShell:
 
-\* Bounding box coordinates
+    .\venv\Scripts\Activate.ps1
 
+### 5. Install dependencies
 
+    pip install -r requirements.txt
 
-OpenCV then visualizes the detections and displays the number of detected objects and current FPS.
+## Run the Application
 
+    python main.py
 
+The YOLO11n model will be downloaded automatically by Ultralytics during the first run if it is not already available locally.
 
-```text
+Press Q to exit the application.
 
-Webcam ↓
+## Output
 
-OpenCV ↓
+The application displays:
 
-YOLO Object Detection ↓
+- Bounding boxes around detected objects
+- Object class names
+- Confidence scores
+- Class-wise object counts
+- Total number of detected objects
+- Current FPS
+- Processing device
 
-Bounding Boxes + Classes + Confidence ↓
+Example:
 
-Object Counting ↓
+    Detected Objects
 
-OpenCV Visualization
+    person: 2
+    cell phone: 1
+    bottle: 1
 
-```
+    Total Objects: 4
+    FPS: 28.5
+    Device: cuda:0
 
+## Project Structure
 
+    Real-Time-Object-Detection-with-YOLO/
+    |
+    +-- main.py
+    +-- requirements.txt
+    +-- .gitignore
+    +-- README.md
 
-\## Installation
+The virtual environment and YOLO model files (*.pt) are excluded from Git using .gitignore.
 
+## Model
 
+This project uses YOLO11n, a lightweight YOLO model designed for real-time object detection.
 
-1\. \*\*Clone the repository:\*\*
+Input:
+Webcam frames
 
-&#x20;  ```bash
+Output:
+Object classes, confidence scores, and bounding box coordinates.
 
-&#x20;  git clone https://github.com
+## Learning Objectives
 
-&#x20;  ```
+This project was built to gain practical experience with:
 
+- Computer vision
+- Object detection
+- YOLO inference
+- Bounding boxes
+- Confidence scores
+- Object counting
+- Real-time video processing
+- FPS calculation
+- OpenCV visualization
+- PyTorch
+- CUDA GPU acceleration
 
+## Future Improvements
 
-2\. \*\*Navigate to the project:\*\*
+- Object tracking with unique IDs
+- Line-crossing detection
+- Entry and exit statistics
+- People counting
+- Video file input
+- Multi-camera support
+- Real-time analytics
+- NVIDIA DeepStream integration
 
-&#x20;  ```bash
-
-&#x20;  cd real-time-object-detection
-
-&#x20;  ```
-
-
-
-3\. \*\*Create a virtual environment:\*\*
-
-&#x20;  ```bash
-
-&#x20;  python -m venv venv
-
-&#x20;  ```
-
-
-
-4\. \*\*Activate it on Windows:\*\*
-
-&#x20;  ```powershell
-
-&#x20;  .\\venv\\Scripts\\Activate.ps1
-
-&#x20;  ```
-
-
-
-5\. \*\*Install dependencies:\*\*
-
-&#x20;  ```bash
-
-&#x20;  pip install -r requirements.txt
-
-&#x20;  ```
-
-
-
-\## Run the Application
-
-```bash
-
-python main.py
-
-```
-
-\*The YOLO model will be downloaded automatically the first time the application is executed. Press \*\*Q\*\* to exit.\*
-
-
-
-\## Project Structure
-
-```text
-
-real\_time\_object\_detection/
-
-│
-
-├── main.py
-
-├── requirements.txt
-
-├── .gitignore
-
-└── README.md
-
-```
-
-
-
-\## Future Improvements
-
-\* Object tracking with unique IDs
-
-\* Line-crossing based counting
-
-\* Entry and exit statistics
-
-\* Class-specific counting
-
-\* Video file input
-
-\* Object tracking visualization
-
-\* Multi-camera support
-
-
-
-\## Learning Objectives
-
-This project was built to understand practical computer vision concepts including:
-
-\* Object detection
-
-\* Bounding boxes
-
-\* Confidence scores
-
-\* YOLO inference
-
-\* Real-time video processing
-
-\* Object counting
-
-\* FPS calculation
-
-\* OpenCV visualization
-
-
-
-\## License
+## License
 
 This project is intended for educational and learning purposes.
-
-
-
